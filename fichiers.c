@@ -61,6 +61,25 @@ void files_fscanf()
     ret = fscanf(fp, "%c,%d", &c1, &i2);
     ret = fscanf(fp, "%c,%d", &c1, &i2);  // ret == -1 car c'est la fin du fichier
     fclose(fp);
+
+    // lecture par boucle
+    fp = fopen("meas.txt", "r");
+    if( fp == NULL )
+        exit(EXIT_FAILURE);
+
+    int tab[20];
+    int pos = 0;
+    do
+    {
+        ret = fscanf(fp, "%d,%d", &tab[pos++], &tab[pos++]);
+        if( ret != 2){
+            break;
+            //exit(EXIT_FAILURE);
+        }
+
+    } while (ret != EOF);
+
+    fclose(fp);
 }
 
 void write_putc()
@@ -85,7 +104,7 @@ void exemple_fseek()
     char c = fgetc(f);
     fseek(f, 2, SEEK_CUR);
     c = fgetc(f);
-    fseek(f, -5, SEEK_CUR);
+    fseek(f, 5, SEEK_CUR);
     pos = ftell(f);
     c = fgetc(f);
     fclose(f);
@@ -107,6 +126,30 @@ void create_files()
     fclose(fp);
 }
 
+void create_meas_tab_fixe()
+{
+    FILE* f = fopen("meas_tab_fixe.txt", "w");
+    const int size = 6;  // largeur peut changer chaque colonne
+    fprintf(f, "%*s%*s%*s%*s\n", size, "num", size, "val1", size, "val2", size,
+            "val3");  // on écrit l'entête
+
+    fprintf(f, "%*d%*d%*d%*d\n", size, 1, size, 10, size, 20, size, 30);
+    fprintf(f, "%*d%*d%*d%*d\n", size, 2, size, -45, size, 1234, size, -456);
+    fclose(f);
+}
+
+void read_meas_tab_fixe()
+{
+    int line = 2;
+    int val;
+    FILE* f = fopen("meas_tab_fixe.txt", "r");
+    fseek(f, line * (6 + 6 + 6 + 6 + 1), SEEK_SET);
+    fseek(f, 6 + 6, SEEK_CUR);
+    fscanf(f, "%d", &val);
+    printf("Int lu : %d\n", val);
+    fclose(f);
+}
+
 void fichier()
 {
     create_files();
@@ -116,4 +159,7 @@ void fichier()
     files_fscanf();
     write_putc();
     exemple_fseek();
+
+    create_meas_tab_fixe();
+    read_meas_tab_fixe();
 }
