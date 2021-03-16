@@ -202,11 +202,18 @@ void exemple_struct(){
     struct Data s1 = { .i=10, .d=3.45, .c='t' };
 
     // Save
-    FILE* f = fopen("meas_tab_fixe.txt", "r");
-    //fwrite
+    FILE* f = fopen("ex_struct.txt", "w+");
+    //fwrite(&s1.i, sizeof(int), 1, f);
+    //fwrite(&s1.d, sizeof(double), 1, f);
+    //fwrite(&s1.c, sizeof(char), 1, f);
+
+    fwrite(&s1, sizeof(struct Data), 1, f);
+
+
+
+    fseek(f, 0, SEEK_SET);
 
     // Read
-    //fopen
     //fread
 
     fprintf(stdout, "i=%d d=%.2lf c=%c", s1.i, s1.d, s1.c);
@@ -228,4 +235,6 @@ void fichier()
     fichier_binaire();
 
     fichier_binaire_char();
+
+    exemple_struct();
 }
