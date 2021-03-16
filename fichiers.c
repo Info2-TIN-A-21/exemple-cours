@@ -199,24 +199,28 @@ struct Data {
 
 
 void exemple_struct(){
-    struct Data s1 = { .i=10, .d=3.45, .c='t' };
+    struct Data s1 = { .i=10, .d=3.45, .c='t' };    
+    struct Data s2 = { .i=20, .d=6.45, .c='z' };
 
     // Save
-    FILE* f = fopen("ex_struct.txt", "w+");
+    FILE* f = fopen("ex_struct.txt1", "w+");
+
+    // solutions point par point
     //fwrite(&s1.i, sizeof(int), 1, f);
     //fwrite(&s1.d, sizeof(double), 1, f);
     //fwrite(&s1.c, sizeof(char), 1, f);
 
     fwrite(&s1, sizeof(struct Data), 1, f);
-
-
+    //fwrite(&s2, sizeof(struct Data), 1, f);
 
     fseek(f, 0, SEEK_SET);
 
     // Read
-    //fread
+    struct Data s_r1, s_r2;
+    fread(&s_r1, sizeof(struct Data), 1, f);
+    //fread(&s_r2, sizeof(struct Data), 1, f);
 
-    fprintf(stdout, "i=%d d=%.2lf c=%c", s1.i, s1.d, s1.c);
+    fprintf(stdout, "i=%d d=%.2lf c=%c\n", s_r1.i, s_r1.d, s_r1.c);
 }
 
 void fichier()
