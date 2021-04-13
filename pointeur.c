@@ -12,7 +12,7 @@ void pres()
     int* pi = &i;
 
     // valeur int dans un pointeur de char
-    char* pc1 = &i;
+//    char* pc1 = &i;
 
     char val = *pc + 2;
 
@@ -53,6 +53,8 @@ void text_et_pointeur(){
 }
 
 void pointeur() {
+
+    
 
     text_et_pointeur();
 

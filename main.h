@@ -2,3 +2,4 @@
 
 void fichier();
 void pointeur();
+void allocation();

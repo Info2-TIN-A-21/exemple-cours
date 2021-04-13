@@ -71,7 +71,8 @@ void files_fscanf()
     int pos = 0;
     do
     {
-        ret = fscanf(fp, "%d,%d", &tab[pos++], &tab[pos++]);
+        ret = fscanf(fp, "%d,%d", &tab[pos], &tab[pos+1]);
+        pos++;
         if( ret != 2){
             break;
             //exit(EXIT_FAILURE);
