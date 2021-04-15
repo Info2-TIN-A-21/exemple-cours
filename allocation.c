@@ -1,24 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void ex4(){
     printf("Ex 4 allocation\n");
     int size = 7;
-    int* tab = (int*)malloc(sizeof(int) * size);
-
+    int* tab = (int*)malloc( size * sizeof(int) );
+    if( tab == NULL )
+        exit(EXIT_FAILURE);
 
     for(int i = 0; i<20; i++){
         if( i < size )
             tab[i] = i;
         else{
+            int* tmp = (int*)malloc( size * sizeof(int) );
+            if( tmp == NULL ){
+                free(tab);
+                exit(EXIT_FAILURE);
+            }
 
-            //printf("La nouvelle taille du tableau vaut : %d\n", size );
+            memcpy(tmp, tab, size);
+            size *= 2;
+            printf("La nouvelle taille du tableau vaut : %d\n", size );
 
+            free(tab);
+            tab = tmp;
+            //lien = "google.fr";
         }
     }
 
     free(tab);
 }
+
 
 void example(){
     // Ex 2
