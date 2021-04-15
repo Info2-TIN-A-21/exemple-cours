@@ -8,4 +8,5 @@ int main(void)
     //fichier();
     //pointeur();
     allocation();
+    ex_measure();
 }

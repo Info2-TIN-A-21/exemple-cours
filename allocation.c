@@ -1,9 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void allocation(){
-    printf("Exemple d'allocation\n");
+void ex4(){
+    printf("Ex 4 allocation\n");
+    int size = 7;
+    int* tab = (int*)malloc(sizeof(int) * size);
 
+
+    for(int i = 0; i<20; i++){
+        if( i < size )
+            tab[i] = i;
+        else{
+
+            //printf("La nouvelle taille du tableau vaut : %d\n", size );
+
+        }
+    }
+
+    free(tab);
+}
+
+void example(){
     // Ex 2
     char* text = "Bonjour";
     char txt[] = "Bonjour";
@@ -29,6 +46,12 @@ void allocation(){
 
     free(p);
     p = NULL;
+}
 
+void allocation(){
+    printf("Exemple d'allocation\n");
 
+    //example();
+
+    ex4();
 }
