@@ -13,7 +13,7 @@ void ex4(){
         if( i < size )
             tab[i] = i;
         else{
-            int* tmp = (int*)malloc( size * sizeof(int) );
+            int* tmp = (int*)malloc( 2 * size * sizeof(int) );
             if( tmp == NULL ){
                 free(tab);
                 exit(EXIT_FAILURE);

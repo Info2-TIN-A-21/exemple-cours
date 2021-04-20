@@ -1,78 +1,47 @@
 #include <stdio.h>
-#include <limits.h>
 
 // include
 #include <stdlib.h>
 
 // define
 #define SIZE 12
-#define DEBUG 0
 
 // macro, pas de ;
-#define MAX(a,b)\
-    (a > b ?\
-     a : b)
+// ne pas oublier de mettre de () pour la priorité
+#define MAX(a,b) (a > b ? a : b)
 
-#define PRINT_INT(a) printf("La valeur de %s : %d\n", #a, a)
+// Mettre en chaine
+#define PRINT_INT(a) printf("Valeur de %s: %d\n", #a, a)
+#define PRINT_INT_1(a) printf("Valeur de " #a " : %d\n", a)
 
-void func1(){
-    printf("Bonjour");
+// Token
+#define TOKEN(a) printf("Valeur de var" #a " vaut : %d\n", var##a)
 
+// Ici on défini un symbol sans valeur
+#define PRODUCTION
+// On peut le tester avec
+#ifdef PRODUCTION
+    #define SIZE_MAX 34
+#else
+    #define SIZE_MAX 10
+#endif
+
+#define DEBUG 0
+
+#ifndef PRODUCTION
+static void func()
+{
     #if DEBUG
-        printf("Affichage de débug\n");
+        printf("J'affiche le debug\n");
     #endif
-
-
-    #ifdef VERSION
-        #if VERSION > 4
-            int i = 24;
-        #endif
-    int i = 12;
-    #else
-    int i = 56;
-    #endif
-
 }
-
-void func2(){
-    printf("Hello");
-}
-
-#define AFFICHAGE func2
-
-#define PRINT_FOO(a) printf("La valeur de foo" #a " vaut %d\n", foo##a )
-
+#endif
 
 
 void preproc(){
+    printf("Le max %d\n", MAX(5,6));
 
-    int foo = 12;
-    PRINT_INT(foo);
-
-
-    int foo1 = 4;
-    int foo2 = 8;
-    PRINT_FOO(1);
-    PRINT_FOO(2);
-
-    int max = INT_MAX;
-    
-
-    #if DEBUG
-        printf("Affichage de débug\n");
-    #endif
-
-    // #define PRINT_INT(a) printf("La valeur de %s : %d\n", #a, a)
-    // printf("La valeur de %s : %d\n", "var", 12);
-
-    printf("max : %d", MAX(2,3));
-    //max(2,3);
-    
-
-    #if DEBUG
-        printf("Affichage de débug\n");
-    #endif
-
-    AFFICHAGE();
-
+    int somme = 45;
+    PRINT_INT(somme);
+    PRINT_INT_1(somme);
 }
