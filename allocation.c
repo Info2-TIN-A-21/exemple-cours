@@ -32,6 +32,34 @@ void ex4(){
     free(tab);
 }
 
+void ex4_bis()
+{
+    printf("Ex 4 bis allocation\n");
+    int size = 7;
+    int* tab = (int*)malloc(sizeof(int) * size);
+    if( tab == NULL )
+        exit(EXIT_FAILURE);
+
+    for(int i = 0; i<20; i++){
+        if( i < size )
+            tab[i] = i;
+        else{
+            int* tmp = (int*)realloc(tab, sizeof(int) * size * 2);
+            if( tmp == NULL )
+            {
+                free(tab);
+                exit(EXIT_FAILURE);
+            }
+
+            size = size * 2;
+            printf("La nouvelle taille du tableau vaut : %d\n", size );
+
+            tab = tmp;            
+        }
+    }
+
+    free(tab);
+}
 
 void example(){
     // Ex 2

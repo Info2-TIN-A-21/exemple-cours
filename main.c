@@ -9,4 +9,5 @@ int main(void)
     //pointeur();
     allocation();
     ex_measure();
+    preproc();
 }
