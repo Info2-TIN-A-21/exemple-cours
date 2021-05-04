@@ -7,5 +7,10 @@
     },
 
     "doxdocgen.generic.includeTypeAtReturn": false,
-    "git.autofetch": false
+    "git.autofetch": false,
+    "files.associations": {
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "limits.h": "c"
+    }
 }
