@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "tda.h"
 
 // jamais de .c
 //#include "saisie.c"
@@ -23,13 +24,15 @@ int main(void)
     // pointeur();
     // allocation();
     // ex_measure();
-    preproc();
+    // preproc();
 
     test();
     Data d = saisie();
     d.value;
 
     Data d1 = algo();
+
+    tda();
 }
 
 void test(){
