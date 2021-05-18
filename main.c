@@ -33,6 +33,13 @@ int main(void)
     Data d1 = algo();
 
     tda();
+
+    FILE* ff = fopen("test.txt", "w");
+
+    int* a = malloc(1000);
+    free(a);
+
+    // ici l'os va contrôler la mémoire et la fermeture des fichiers
 }
 
 void test(){
