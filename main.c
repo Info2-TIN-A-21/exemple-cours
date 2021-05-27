@@ -39,6 +39,8 @@ int main(void)
     int* a = malloc(1000);
     free(a);
 
+    
+
     // ici l'os va contrôler la mémoire et la fermeture des fichiers
 }
 
