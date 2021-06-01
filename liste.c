@@ -30,10 +30,6 @@ typedef struct
     struct PileElement* tete;    
 } Pile;
 
-void test_pile(){
-    Pile pile = {0}; 
-}
-
 bool empiler(Pile* p, double valeur){
     PileElement* elem = malloc( sizeof(PileElement) );
     if( elem == NULL ){
@@ -46,6 +42,58 @@ bool empiler(Pile* p, double valeur){
     
     return true;
 }
+
+bool depiler(Pile* p, double* val){
+
+    if(p->tete == NULL){
+        return false;
+    }
+
+    *val = p->tete->valeur;
+
+    PileElement* depile = p->tete;
+
+    p->tete = depile->suivant;
+    free(depile);
+    return true;
+} // tmp n'existe plus
+
+void test_pile(){
+    Pile pile = {0}; 
+    empiler(&pile, 12.3);
+    empiler(&pile, 4.3);
+    empiler(&pile, -5.67);
+
+    double val;
+    depiler(&pile, &val);
+    printf("Valeur dépilée : %.2lf\n", val);
+    depiler(&pile, &val);
+    printf("Valeur dépilée : %.2lf\n", val);
+}
+
+
+typedef struct FileElement {
+    int valeur;    
+    struct FileElement* suivant;
+};
+
+typedef struct{
+    struct FileElement* tete;
+    struct FileElement* queue;
+} File;
+
+bool enfiler(File* f, int valeur){
+
+}
+
+bool defiler(File* f, int* valeur){
+    
+}
+
+void test_file(){
+    File f = {0};    
+}
+
 
 void liste(){
     
@@ -65,4 +113,8 @@ void liste(){
     //          d4       d3          d2       d1        d4        d3        3
     val = d1.pointeur->pointeur->pointeur->pointeur->pointeur->pointeur->value;
     printf("La valeur = %d\n", val);
+
+    test_pile();
+
+    test_file();
 }

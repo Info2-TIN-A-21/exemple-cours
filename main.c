@@ -32,7 +32,7 @@ int main(void)
 
     Data d1 = algo();
 
-    tda();
+    //tda();
 
     FILE* ff = fopen("test.txt", "w");
 
@@ -42,6 +42,8 @@ int main(void)
     
 
     // ici l'os va contrôler la mémoire et la fermeture des fichiers
+
+    liste();
 }
 
 void test(){
