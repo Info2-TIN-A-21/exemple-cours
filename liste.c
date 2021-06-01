@@ -40,16 +40,10 @@ bool empiler(Pile* p, double valeur){
         return false;
     }
     
-    if( p->tete == NULL ){
-        elem->suivant = NULL;
-    }
-    else{
-        elem->suivant = p->tete;
-        
-    }
-    p->tete = elem;    
     elem->valeur = valeur;
-
+    elem->suivant = p->tete;
+    p->tete = elem;    
+    
     return true;
 }
 
