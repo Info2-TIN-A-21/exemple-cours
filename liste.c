@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef int    MonType;
 //     type  | Alias
@@ -17,6 +18,40 @@ typedef struct Data{
     int value;
     struct Data* pointeur;
 } Data;
+
+
+typedef struct PileElement {
+    double valeur;
+    struct PileElement* suivant;
+} PileElement;
+
+typedef struct  
+{
+    struct PileElement* tete;    
+} Pile;
+
+void test_pile(){
+    Pile pile = {0}; 
+}
+
+bool empiler(Pile* p, double valeur){
+    PileElement* elem = malloc( sizeof(PileElement) );
+    if( elem == NULL ){
+        return false;
+    }
+    
+    if( p->tete == NULL ){
+        elem->suivant = NULL;
+    }
+    else{
+        elem->suivant = p->tete;
+        
+    }
+    p->tete = elem;    
+    elem->valeur = valeur;
+
+    return true;
+}
 
 void liste(){
     
