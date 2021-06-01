@@ -75,23 +75,58 @@ void test_pile(){
 typedef struct FileElement {
     int valeur;    
     struct FileElement* suivant;
-};
+}FileElement;
 
 typedef struct{
-    struct FileElement* tete;
-    struct FileElement* queue;
+    FileElement* tete;
+    FileElement* queue;
 } File;
 
 bool enfiler(File* f, int valeur){
+    if( f == NULL ){
+        return false;
+    }
 
+    FileElement* elem = malloc( sizeof(FileElement) );
+    if( elem == NULL ){
+        return false;
+    }
+
+    elem->valeur = valeur;
+    elem->suivant = NULL;
+
+    if( f->queue == NULL ){ // liste vide
+        f->tete = elem;
+    }
+    else {
+       f->queue->suivant = elem; 
+    }
+
+    f->queue = elem;
+    return true;
 }
 
 bool defiler(File* f, int* valeur){
-    
+    if( f == NULL && f->queue == NULL ){
+        return false;
+    }
+
+    FileElement* current = f->tete;
+    *valeur = current->valeur;
+
+    f->tete = current->suivant;
+
+    if( f->tete == NULL ){
+        f->queue = NULL;
+    }
+
+    free(current);
+
+    return true;    
 }
 
 void test_file(){
-    File f = {0};    
+    File f = {0};
 }
 
 
