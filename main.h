@@ -5,4 +5,3 @@ void pointeur();
 void allocation();
 void ex_measure();
 void preproc();
-void liste();

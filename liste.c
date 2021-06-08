@@ -130,6 +130,69 @@ void test_file(){
 }
 
 
+typedef struct {
+    int num;
+    double value;
+} DataEx4;
+
+typedef struct ElemEx4 {
+    DataEx4 valeur;
+    struct ElemEx4* suivant;
+} ElemEx4;
+
+typedef struct  
+{
+    struct ElemEx4* tete;    
+} PileEx4;
+
+bool inserer_ex4(PileEx4* p, int num, double value){
+    if( p == NULL ){
+        return false;
+    }
+
+    ElemEx4* elem = malloc( sizeof(ElemEx4) );
+    if( elem == NULL ){
+        return false;
+    }
+
+    elem->valeur.num = num;
+    elem->valeur.value = value;
+    elem->suivant = NULL;
+    
+    if( p->tete == NULL || num < p->tete->valeur.num ){
+        elem->suivant = p->tete;
+        p->tete = elem;
+        return true;
+    }
+
+    ElemEx4* cur = p->tete;
+    while ( cur->suivant != NULL && num > cur->suivant->valeur.num )
+    {
+        cur = cur->suivant;   
+    }
+    
+    elem->suivant = cur->suivant;
+    cur->suivant = elem;
+
+    return true;
+}
+
+void test_ex4(){
+    PileEx4 p = {0};
+    inserer_ex4(&p, 2, 2.2);
+    inserer_ex4(&p, 1, -1.1);
+    inserer_ex4(&p, 20, 7.8);
+    inserer_ex4(&p, 5, 9);
+
+    ElemEx4* c = p.tete;
+    while (c != NULL)
+    {
+        printf("ID : %d / Value : %.2lf\n", c->valeur.num,  c->valeur.value);
+        c = c->suivant;
+    }
+}
+
+
 void liste(){
     
     MonType maVariable = 12;
@@ -152,4 +215,6 @@ void liste(){
     test_pile();
 
     test_file();
+
+    test_ex4();
 }

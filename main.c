@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include "tda.h"
 
+#include "liste.h"
+
 // jamais de .c
 //#include "saisie.c"
 
