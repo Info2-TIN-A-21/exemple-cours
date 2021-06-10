@@ -46,6 +46,8 @@ int main(void)
     // ici l'os va contrôler la mémoire et la fermeture des fichiers
 
     liste();
+
+    test_enum();
 }
 
 void test(){
